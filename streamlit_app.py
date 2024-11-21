@@ -4,6 +4,7 @@ import numpy
 import matplotlib.pyplot
 from matplotlib.dates import YearLocator, DateFormatter
 
+#url = "https://segundoparciallaboratorio-gonzalezmartin.streamlit.app/"
 
 streamlit.set_page_config(page_title="Segundó Parcial", layout="wide")
 
@@ -71,16 +72,17 @@ def calcular_datos(data_frame, sucursal='Todas'):
         z = numpy.polyfit(x, datos_mensuales['Unidades_vendidas'], 1)
         p = numpy.poly1d(z)
         
-        productos_completos[producto] = {
-            'precio_promedio': precio_promedio,
-            'variacion_precio': variacion_precio,
-            'margen_promedio': margen_promedio,
-            'variacion_margen': variacion_margen,
-            'unidades_vendidas': unidades_vendidas,
-            'variacion_unidades': variacion_unidades,
-            'datos_mensuales': datos_mensuales,
-            'trend': p(x)
-        }
+        productos_completos[producto] = dict(
+        precio_promedio=precio_promedio,
+        variacion_precio=variacion_precio,
+        margen_promedio=margen_promedio,
+        variacion_margen=variacion_margen,
+        unidades_vendidas=unidades_vendidas,
+        variacion_unidades=variacion_unidades,
+        datos_mensuales=datos_mensuales,
+        trend=p(x)
+        )
+
     
     return productos_completos
 
